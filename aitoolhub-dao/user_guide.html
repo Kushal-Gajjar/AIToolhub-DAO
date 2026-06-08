@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIToolHub DAO - System & User Documentation Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='1' y='1' width='30' height='30' rx='9' fill='%23121318' stroke='%23ffffff' stroke-width='1.5' stroke-opacity='0.2'/><path d='M16 8 L23 12 L23 20 L16 24 L9 20 L9 12 Z' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+  <style>
+    :root {
+      --bg-color: #070b17;
+      --sidebar-bg: rgba(11, 18, 36, 0.95);
+      --card-bg: rgba(11, 18, 36, 0.6);
+      --card-hover-bg: rgba(15, 24, 48, 0.75);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --text-main: #cbd5e1;
+      --text-white: #ffffff;
+      --text-muted: #64748b;
+      --accent-purple: #7c3aed;
+      --accent-blue: #2563eb;
+      --accent-cyan: #38bdf8;
+      --accent-green: #10b981;
+      --code-bg: #090e1a;
+      --shadow-color: rgba(0, 0, 0, 0.4);
+      /* DotField Dark Theme Variables */
+      --dot-gradient-from: #A855F7;
+      --dot-gradient-to: #B497CF;
+      --dot-glow-color: #120F17;
+      --dot-glow-color-transparent: rgba(18, 15, 23, 0);
+    }
+
+    .light-theme {
+      --bg-color: #f1f5f9;
+      --sidebar-bg: rgba(255, 255, 255, 0.95);
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --card-hover-bg: rgba(248, 250, 252, 0.95);
+      --border-color: rgba(15, 23, 42, 0.08);
+      --text-main: #334155;
+      --text-white: #0f172a;
+      --text-muted: #64748b;
+      --accent-purple: #7c3aed;
+      --accent-blue: #2563eb;
+      --accent-cyan: #0284c7;
+      --accent-green: #059669;
+      --code-bg: #f8fafc;
+      --shadow-color: rgba(15, 23, 42, 0.04);
+
+      /* DotField Light Theme Variables */
+      --dot-gradient-from: rgba(59, 130, 246, 0.28);
+      --dot-gradient-to: rgba(168, 85, 247, 0.22);
+      --dot-glow-color: rgba(255, 255, 255, 0.85);
+      --dot-glow-color-transparent: rgba(255, 255, 255, 0);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Interactive background canvas wrapper */
+    .dot-field-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Sidebar Table of Contents */
+    .sidebar {
+      width: 290px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border-color);
+      padding: 30px 24px;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      backdrop-filter: blur(24px);
+      transition: background-color 0.3s ease, border-right-color 0.3s ease;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #1f2026 0%, #0d0e11 100%);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      color: white;
+      font-weight: 800;
+      font-size: 18px;
+      font-family: 'Outfit', sans-serif;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .logo-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-white);
+      transition: color 0.3s ease;
+    }
+
+    .logo-text em {
+      font-style: normal;
+      color: #a1a1aa;
+    }
+
+    /* Theme Toggle Button style (matching main platform) */
+    .theme-toggle-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      padding: 0;
+      backdrop-filter: blur(8px);
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--card-hover-bg);
+      color: var(--text-white);
+      border-color: var(--text-muted);
+      transform: rotate(15deg);
+    }
+
+    .toc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      transition: color 0.3s ease;
+    }
+
+    .toc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .toc-item a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      display: block;
+      padding: 10px 14px;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+    }
+
+    .toc-item a:hover,
+    .toc-item.active a {
+      color: var(--text-white);
+      background: rgba(59, 130, 246, 0.08);
+      border-left-color: var(--accent-blue);
+    }
+
+    /* Main Container content */
+    .content-area {
+      margin-left: 290px;
+      padding: 50px 60px;
+      flex-grow: 1;
+      max-width: 960px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 24px;
+      transition: border-color 0.3s ease;
+    }
+
+    .doc-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-cyan);
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      padding: 4px 12px;
+      border-radius: 99px;
+      margin-bottom: 14px;
+      transition: all 0.3s ease;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--text-white);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      transition: color 0.3s ease;
+    }
+
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-white);
+      margin: 48px 0 16px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-white);
+      margin: 28px 0 12px 0;
+      transition: color 0.3s ease;
+    }
+
+    p {
+      color: var(--text-main);
+      font-size: 14px;
+      margin-bottom: 16px;
+      line-height: 1.7;
+      transition: color 0.3s ease;
+    }
+
+    strong {
+      color: var(--text-white);
+      transition: color 0.3s ease;
+    }
+
+    /* Cards Layout */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 24px;
+      margin: 20px 0;
+      backdrop-filter: blur(24px);
+      transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      background: var(--card-hover-bg);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px var(--shadow-color);
+    }
+
+    /* Table layout styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    th {
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-color);
+      text-align: left;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .light-theme th {
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    td {
+      padding: 12px 14px;
+      color: var(--text-main);
+      border-bottom: 1px solid var(--border-color);
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Code Block Module styling */
+    .code-container {
+      position: relative;
+      margin: 18px 0;
+    }
+
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-main);
+      overflow-x: auto;
+      line-height: 1.5;
+      backdrop-filter: blur(24px);
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--accent-cyan);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .light-theme code {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    pre code {
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      color: inherit;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .light-theme .copy-btn {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .copy-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-white);
+    }
+
+    .light-theme .copy-btn:hover {
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    .copy-btn.copied {
+      color: var(--accent-green);
+      border-color: rgba(16, 185, 129, 0.2);
+      background: rgba(16, 185, 129, 0.05);
+    }
+
+    /* Status pill component */
+    .status-badge {
+      font-size: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .status-badge.purple {
+      background: rgba(124, 58, 237, 0.15);
+      color: #c4b5fd;
+    }
+
+    .status-badge.blue {
+      background: rgba(37, 99, 235, 0.15);
+      color: #93c5fd;
+    }
+
+    .status-badge.cyan {
+      background: rgba(56, 189, 248, 0.15);
+      color: #a5f3fc;
+    }
+
+    .status-badge.green {
+      background: rgba(16, 185, 129, 0.15);
+      color: #a7f3d0;
+    }
+
+    .light-theme .status-badge.purple {
+      background: rgba(124, 58, 237, 0.1);
+      color: #6d28d9;
+    }
+
+    .light-theme .status-badge.blue {
+      background: rgba(37, 99, 235, 0.1);
+      color: #1d4ed8;
+    }
+
+    .light-theme .status-badge.cyan {
+      background: rgba(56, 189, 248, 0.1);
+      color: #0284c7;
+    }
+
+    .light-theme .status-badge.green {
+      background: rgba(16, 185, 129, 0.1);
+      color: #059669;
+    }
+
+    /* Alert Boxes */
+    .alert-box {
+      border-left: 4px solid var(--accent-blue);
+      background: rgba(59, 130, 246, 0.03);
+      padding: 16px;
+      border-radius: 0 12px 12px 0;
+      margin: 24px 0;
+      font-size: 13.5px;
+      backdrop-filter: blur(24px);
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+    }
+
+    .alert-box.info {
+      border-left-color: var(--accent-cyan);
+      background: rgba(56, 189, 248, 0.03);
+    }
+
+    .alert-box-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Architecture Visual Mockup */
+    .arch-diagram {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 20px 0;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      backdrop-filter: blur(24px);
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+    }
+
+    .light-theme .arch-diagram {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .arch-row {
+      display: flex;
+      justify-content: space-around;
+      gap: 12px;
+    }
+
+    .arch-node {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 8px;
+      padding: 10px 14px;
+      text-align: center;
+      font-size: 12px;
+      flex: 1;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-main);
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+
+    .light-theme .arch-node {
+      background: rgba(0, 0, 0, 0.02);
+      border-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .arch-node.primary {
+      background: rgba(37, 99, 235, 0.08);
+      border-color: rgba(37, 99, 235, 0.3);
+      color: #93c5fd;
+    }
+
+    .light-theme .arch-node.primary {
+      background: rgba(37, 99, 235, 0.06);
+      border-color: rgba(37, 99, 235, 0.2);
+      color: #1d4ed8;
+    }
+
+    .arch-node.accent {
+      background: rgba(124, 58, 237, 0.08);
+      border-color: rgba(124, 58, 237, 0.3);
+      color: #c4b5fd;
+    }
+
+    .light-theme .arch-node.accent {
+      background: rgba(124, 58, 237, 0.06);
+      border-color: rgba(124, 58, 237, 0.2);
+      color: #6d28d9;
+    }
+
+    .arrow-down {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    @media (max-width: 1024px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        position: static;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .content-area {
+        margin-left: 0;
+        padding: 30px;
+      }
+    }
+
+    /* Global Override to enforce 'Plus Jakarta Sans' everywhere in documentation */
+    body,
+    h1,
+    h2,
+    h3,
+    p,
+    strong,
+    .logo-text,
+    .toc-title,
+    .toc-item a,
+    .doc-badge,
+    .alert-box-title,
+    .status-badge {
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+    }
+
+    /* Enforce bold/extra-bold weights inside documentation */
+    h1,
+    h2,
+    h3 {
+      font-weight: 800 !important;
+    }
+
+    .logo-text,
+    .toc-title,
+    .doc-badge,
+    .alert-box-title,
+    .status-badge,
+    .toc-item a,
+    th,
+    strong {
+      font-weight: 700 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('ait_theme');
+      if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+      }
+    })();
+  </script>
+
+  <!-- DYNAMIC INTERACTIVE BACKGROUND GRID -->
+  <div id="dot-field-bg" class="dot-field-container"></div>
+
+  <!-- Sticky Left Sidebar TOC -->
+  <aside class="sidebar">
+    <div class="logo-container">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div class="logo-icon">⬡</div>
+        <span class="logo-text">AIToolHub <em>DAO</em></span>
+      </div>
+      <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      </button>
+    </div>
+
+    <nav>
+      <div class="toc-title">Table of Contents</div>
+      <ul class="toc-list">
+        <li class="toc-item active"><a href="#overview">1. Project Overview</a></li>
+        <li class="toc-item"><a href="#structure">2. Directory Structure</a></li>
+        <li class="toc-item"><a href="#architecture">3. System Architecture</a></li>
+        <li class="toc-item"><a href="#launching">4. Startup & Execution</a></li>
+        <li class="toc-item"><a href="#environments">5. Configuration (.env)</a></li>
+        <li class="toc-item"><a href="#devops">6. Developer Operations</a></li>
+        <li class="toc-item"><a href="#trouble">7. Troubleshooting Checklist</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Documentation Content -->
+  <main class="content-area">
+    <header>
+      <span class="doc-badge">Developer & User Manual</span>
+      <h1>AIToolHub DAO Documentation Guide</h1>
+      <p style="margin-top: 8px;">A comprehensive blueprint detailing the framework stack, repository file paths,
+        relational configurations, smart contract properties, and launch steps.</p>
+    </header>
+
+    <!-- 1. Overview Section -->
+    <section id="overview" class="doc-section">
+      <h2>1. Project Overview & Tech Stack</h2>
+      <p><strong>AIToolHub DAO</strong> is a decentralized autonomous organization governing a marketplace of heavy AI
+        utilities. DAO participants vote on budgets, propose tool specifications, and stake governance tokens to claim a
+        share of platform revenues. The project utilizes a decoupled containerized environment divided into distinct
+        service responsibilities:</p>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Scope</th>
+              <th>Technologies</th>
+              <th>Responsibility</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="status-badge blue">Frontend</span></td>
+              <td>HTML5, CSS3, Vanilla JS, Nginx</td>
+              <td>Renders dashboards, charts, governance states, and profile portals.</td>
+            </tr>
+            <tr>
+              <td><span class="status-badge purple">Backend API</span></td>
+              <td>C#, ASP.NET Core 8, EF Core, PostgreSQL</td>
+              <td>Stores user auth accounts, proposals, tool lists, and casts.</td>
+            </tr>
+            <tr>
+              <td><span class="status-badge cyan">AI Services</span></td>
+              <td>Python, FastAPI, Celery, Redis</td>
+              <td>Runs transformer pipelines, OCR processing, and zero-shot NLP models.</td>
+            </tr>
+            <tr>
+              <td><span class="status-badge green">Contracts</span></td>
+              <td>Solidity, Hardhat, OpenZeppelin Governor</td>
+              <td>Enforces voting periods, quorum metrics, and delegation weights on-chain.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 2. Directory Structure Section -->
+    <section id="structure" class="doc-section">
+      <h2>2. Directory Structure Blueprint</h2>
+      <p>The code is organized into a nested hierarchy mapping directly to service images within the orchestrator
+        configuration:</p>
+
+      <div class="code-container">
+        <pre><code>aitoolhub-dao/
+├── aitoolhub-frontend/      # Frontend Client Directory (served by Nginx container)
+│   ├── public/              # Production web resources
+│   │   ├── index.html       # Single entry-point HTML document
+│   │   ├── app.js           # Client-side javascript state and handlers
+│   │   └── styles.css       # Layout styles and custom theme parameters
+│   └── Dockerfile           # Sets up Nginx configurations
+│
+├── aitoolhub-api/           # REST API Web Application (built on ASP.NET Core 8)
+│   ├── Controllers/         # Auth, Tools, Proposals, and Votes controllers
+│   ├── Models/              # Database entities (User, Proposal, Vote, Tool)
+│   ├── Services/            # Business operations implementations
+│   └── Program.cs           # Web host startup configurations & integrations
+│
+├── aitoolhub-ai/            # Python Inference Engine
+│   ├── services/            # Pipelines (ocr_service, summarizer_service, etc.)
+│   ├── main.py              # FastAPI controller definitions
+│   └── celery_worker.py     # Background worker consuming broker queues
+│
+├── aitoolhub-contracts/     # Smart Contracts Development Environment
+│   └── contracts/           # DAOGovernance.sol OpenZeppelin token governor
+│
+└── docker-compose.yml       # Coordinates redis, db, api, ai, workers, and frontend services</code></pre>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+    </section>
+
+    <!-- 3. System Architecture Section -->
+    <section id="architecture" class="doc-section">
+      <h2>3. System Architecture Diagram</h2>
+      <p>The platform coordinates components to isolate computational overhead. Web requests go through Nginx proxy,
+        routing calls dynamically to C# Web API endpoints, FastAPI AI engines, or serving static SPA documents:</p>
+
+      <div class="arch-diagram">
+        <div class="arch-row">
+          <div class="arch-node primary">Browser UI Client</div>
+        </div>
+        <div class="arrow-down">↓ (HTTP Requests)</div>
+        <div class="arch-row">
+          <div class="arch-node primary">Nginx Reverse Proxy (:80)</div>
+        </div>
+        <div class="arrow-down">↓ (Routing Paths)</div>
+        <div class="arch-row">
+          <div class="arch-node accent">/api/* (C# Web API :5000)</div>
+          <div class="arch-node accent">/ai/* (Python FastAPI :8000)</div>
+        </div>
+        <div class="arrow-down">↓ (Tasks & Data flows)</div>
+        <div class="arch-row">
+          <div class="arch-node">PostgreSQL DB</div>
+          <div class="arch-node">Redis Queue</div>
+          <div class="arch-node">Celery Worker</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Startup & Execution Section -->
+    <section id="launching" class="doc-section">
+      <h2>4. Startup & Execution Steps</h2>
+      <p>Start the platform containers using Docker Compose. Ensure Docker Desktop is active before proceeding:</p>
+
+      <div class="alert-box">
+        <div class="alert-box-title">💡 Important Network Hint</div>
+        <p style="margin-bottom:0;">On the first run or when rebuilds are initiated, reload Nginx once containers are up
+          to ensure proper upstream DNS sync.</p>
+      </div>
+
+      <div class="code-container">
+        <pre><code class="language-bash"># 1. Navigate to directory
+cd aitoolhub-dao
+
+# 2. Compile images and start containers in detached mode
+docker-compose up --build -d
+
+# 3. Synchronize Nginx upstream proxy resolution
+docker-compose restart nginx</code></pre>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+
+      <p>Once active, verify URLs:</p>
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Web Service</th>
+              <th>Hosting Address</th>
+              <th>Developer Resource</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Frontend Client</td>
+              <td><code>http://localhost:3000</code> or <code>http://localhost</code></td>
+              <td>Production UI View</td>
+            </tr>
+            <tr>
+              <td>C# Backend API</td>
+              <td><code>http://localhost:5000/swagger</code></td>
+              <td>Interactive OpenAPI Specification Swagger UI</td>
+            </tr>
+            <tr>
+              <td>FastAPI AI Server</td>
+              <td><code>http://localhost:8000/docs</code></td>
+              <td>Swagger documentation for ML models</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. Configuration Section -->
+    <section id="environments" class="doc-section">
+      <h2>5. Relational Configurations (.env)</h2>
+      <p>Duplicate `.env.example` to `.env` and adjust the variables to reflect local parameters:</p>
+
+      <div class="code-container">
+        <pre><code># PostgreSQL connection credentials
+POSTGRES_DB=aitoolhub
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres_password_123
+
+# C# REST Host Database String
+ConnectionStrings__DefaultConnection=Host=db;Database=aitoolhub;Username=postgres;Password=postgres_password_123
+
+# JWT Token validation secret (Must be at least 32 characters long)
+Jwt__Secret=YOUR_SECURE_JWT_SIGNING_PASSPHRASE_KEY_32_CHARS
+Jwt__Issuer=aitoolhub-api
+Jwt__Audience=aitoolhub-frontend
+
+# Redis caching url link
+REDIS_URL=redis://redis:6379/0</code></pre>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+    </section>
+
+    <!-- 6. Developer Operations Section -->
+    <section id="devops" class="doc-section">
+      <h2>6. Developer Operations (Hot-Deploy)</h2>
+      <p>Nginx serves static files dynamically. When adjusting HTML, CSS, or JS layouts on the client side, hot-deploy
+        updates immediately into the container without rebuilding the Docker image:</p>
+
+      <div class="code-container">
+        <pre><code class="language-powershell"># Deploy updated HTML layout
+docker cp aitoolhub-frontend/public/index.html aitoolhub-dao-frontend-1:/usr/share/nginx/html/index.html
+
+# Deploy updated JavaScript engine
+docker cp aitoolhub-frontend/public/app.js aitoolhub-dao-frontend-1:/usr/share/nginx/html/app.js
+
+# Deploy updated styling layouts
+docker cp aitoolhub-frontend/public/styles.css aitoolhub-dao-frontend-1:/usr/share/nginx/html/styles.css
+
+# Force client reload inside proxy
+docker exec aitoolhub-dao-nginx-1 nginx -s reload</code></pre>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+    </section>
+
+    <!-- 7. Troubleshooting Section -->
+    <section id="trouble" class="doc-section">
+      <h2>7. Troubleshooting & Logs</h2>
+      <p>Consult this checklist when facing environment initialization failures:</p>
+
+      <div class="card">
+        <p><strong>1. "Cannot connect to the Docker daemon" error:</strong><br>
+          Make sure Docker Desktop application is launched and running in the taskbar.</p>
+
+        <p><strong>2. Swagger returns 502 Bad Gateway:</strong><br>
+          PostgreSQL database migrations are applied on start. Give the container 15-30 seconds to complete migrations
+          before checking Swagger docs.</p>
+
+        <p><strong>3. Relational status queries failed / unreachable warnings:</strong><br>
+          Inspect logs for a specific container to discover errors:
+          <code
+            style="display:block; margin:6px 0; padding:6px; background:#090e1a; border-radius:4px;">docker-compose logs api</code>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Copy to clipboard function
+    function copyCode(btn) {
+      const pre = btn.previousElementSibling;
+      const code = pre.querySelector('code');
+      navigator.clipboard.writeText(code.innerText).then(() => {
+        btn.innerText = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerText = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    // Scroll active link highlight
+    const sections = document.querySelectorAll('.doc-section');
+    const navLi = document.querySelectorAll('.toc-item');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop - 120) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLi.forEach(li => {
+        li.classList.remove('active');
+        if (li.querySelector('a').getAttribute('href') === `#${current}`) {
+          li.classList.add('active');
+        }
+      });
+    });
+
+    // Theme Switcher & SVG Icon swapper
+    function updateThemeBtnIcon(isLight) {
+      const btn = document.getElementById('themeToggleBtn');
+      if (!btn) return;
+      if (isLight) {
+        btn.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        `;
+      } else {
+        btn.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        `;
+      }
+    }
+
+    window.toggleTheme = function () {
+      const body = document.body;
+      body.classList.toggle('light-theme');
+      const isLight = body.classList.contains('light-theme');
+      localStorage.setItem('ait_theme', isLight ? 'light' : 'dark');
+      updateThemeBtnIcon(isLight);
+    };
+
+    // Initialize DotField Grid Background
+    window.initDotField = function () {
+      const container = document.getElementById('dot-field-bg');
+      if (!container) return;
+
+      container.innerHTML = '';
+
+      const canvas = document.createElement('canvas');
+      canvas.style.position = 'absolute';
+      canvas.style.inset = '0';
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      container.appendChild(canvas);
+
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.style.position = 'absolute';
+      svg.style.inset = '0';
+      svg.style.width = '100%';
+      svg.style.height = '100%';
+      svg.style.pointerEvents = 'none';
+      container.appendChild(svg);
+
+      const glowId = `dot-field-glow-${Math.random().toString(36).slice(2, 9)}`;
+      const filterId = `dot-field-blur-${Math.random().toString(36).slice(2, 9)}`;
+
+      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+
+      const radialGradient = document.createElementNS('http://www.w3.org/2000/svg', 'radialGradient');
+      radialGradient.setAttribute('id', glowId);
+
+      const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+      stop1.setAttribute('offset', '0%');
+      stop1.setAttribute('stop-color', 'var(--dot-glow-color)');
+
+      const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+      stop2.setAttribute('offset', '100%');
+      stop2.setAttribute('stop-color', 'var(--dot-glow-color-transparent)');
+
+      radialGradient.appendChild(stop1);
+      radialGradient.appendChild(stop2);
+      defs.appendChild(radialGradient);
+
+      const filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
+      filter.setAttribute('id', filterId);
+      const feGaussianBlur = document.createElementNS('http://www.w3.org/2000/svg', 'feGaussianBlur');
+      feGaussianBlur.setAttribute('stdDeviation', '80'); // Deep Gaussian blur standard deviation
+      filter.appendChild(feGaussianBlur);
+      defs.appendChild(filter);
+
+      svg.appendChild(defs);
+
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.setAttribute('cx', '-9999');
+      circle.setAttribute('cy', '-9999');
+      circle.setAttribute('r', '280'); // Large glow radius for smooth interpolation
+      circle.setAttribute('fill', `url(#${glowId})`);
+      circle.setAttribute('filter', `url(#${filterId})`);
+      circle.style.opacity = '0';
+      circle.style.willChange = 'opacity';
+      svg.appendChild(circle);
+
+      const options = {
+        dotRadius: 1.5,
+        dotSpacing: 14,
+        cursorRadius: 500,
+        cursorForce: 0.1,
+        bulgeOnly: true,
+        bulgeStrength: 67,
+        glowRadius: 200,
+        sparkle: false,
+        waveAmplitude: 0
+      };
+
+      const ctx = canvas.getContext('2d', { alpha: true });
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      let dots = [];
+      const mouse = { x: -9999, y: -9999, prevX: -9999, prevY: -9999, speed: 0 };
+      let size = { w: 0, h: 0, offsetX: 0, offsetY: 0 };
+      let glowOpacity = 0;
+      let engagement = 0;
+      let frameCount = 0;
+      let rafId = null;
+
+      function doResize() {
+        const rect = container.getBoundingClientRect();
+        const w = rect.width;
+        const h = rect.height;
+
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = `${w}px`;
+        canvas.style.height = `${h}px`;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        size = {
+          w,
+          h,
+          offsetX: rect.left + window.scrollX,
+          offsetY: rect.top + window.scrollY,
+        };
+
+        buildDots(w, h);
+      }
+
+      function buildDots(w, h) {
+        const step = options.dotRadius + options.dotSpacing;
+        const cols = Math.floor(w / step);
+        const rows = Math.floor(h / step);
+        const padX = (w % step) / 2;
+        const padY = (h % step) / 2;
+        dots = new Array(rows * cols);
+        let idx = 0;
+
+        for (let row = 0; row < rows; row++) {
+          for (let col = 0; col < cols; col++) {
+            const ax = padX + col * step + step / 2;
+            const ay = padY + row * step + step / 2;
+            dots[idx++] = { ax, ay, sx: ax, sy: ay, vx: 0, vy: 0, x: ax, y: ay };
+          }
+        }
+      }
+
+      function onMouseMove(e) {
+        mouse.x = e.pageX - size.offsetX;
+        mouse.y = e.pageY - size.offsetY;
+      }
+
+      function updateMouseSpeed() {
+        const dx = mouse.prevX - mouse.x;
+        const dy = mouse.prevY - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        mouse.speed += (dist - mouse.speed) * 0.5;
+        if (mouse.speed < 0.001) mouse.speed = 0;
+        mouse.prevX = mouse.x;
+        mouse.prevY = mouse.y;
+      }
+
+      const speedInterval = setInterval(updateMouseSpeed, 20);
+
+      function tick() {
+        frameCount++;
+        const len = dots.length;
+        const t = frameCount * 0.02;
+
+        const isMouseIn = (mouse.x !== -9999 && mouse.y !== -9999);
+        const targetEngagement = isMouseIn ? (0.65 + Math.min(mouse.speed / 12, 0.35)) : 0;
+        engagement += (targetEngagement - engagement) * 0.06;
+        if (engagement < 0.001) engagement = 0;
+        const eng = engagement;
+
+        glowOpacity += (eng - glowOpacity) * 0.08;
+
+        if (circle) {
+          circle.setAttribute('cx', mouse.x.toString());
+          circle.setAttribute('cy', mouse.y.toString());
+          circle.style.opacity = glowOpacity.toString();
+        }
+
+        ctx.clearRect(0, 0, size.w, size.h);
+
+        const computedStyle = getComputedStyle(document.body);
+        const gradientFrom = computedStyle.getPropertyValue('--dot-gradient-from').trim() || 'rgba(168, 85, 247, 0.35)';
+        const gradientTo = computedStyle.getPropertyValue('--dot-gradient-to').trim() || 'rgba(180, 151, 207, 0.25)';
+        const glowColor = computedStyle.getPropertyValue('--dot-glow-color').trim() || '#120F17';
+        const glowColorTransparent = computedStyle.getPropertyValue('--dot-glow-color-transparent').trim() || 'rgba(18, 15, 23, 0)';
+
+        stop1.setAttribute('stop-color', glowColor);
+        stop2.setAttribute('stop-color', glowColorTransparent);
+
+        const grad = ctx.createLinearGradient(0, 0, size.w, size.h);
+        grad.addColorStop(0, gradientFrom);
+        grad.addColorStop(1, gradientTo);
+        ctx.fillStyle = grad;
+
+        const cr = options.cursorRadius;
+        const crSq = cr * cr;
+        const isLightTheme = document.body.classList.contains('light-theme');
+        const rad = isLightTheme ? 2.2 : 1.2; // 2.2px in light theme, 1.2px in dark theme
+        const isBulge = options.bulgeOnly;
+
+        ctx.beginPath();
+        const TWO_PI = Math.PI * 2;
+
+        for (let i = 0; i < len; i++) {
+          const d = dots[i];
+          if (!d) continue;
+          const dx = mouse.x - d.ax;
+          const dy = mouse.y - d.ay;
+          const distSq = dx * dx + dy * dy;
+
+          if (distSq < crSq && eng > 0.01) {
+            const dist = Math.sqrt(distSq);
+            if (isBulge) {
+              const tVal = 1 - dist / cr;
+              const push = tVal * tVal * options.bulgeStrength * eng;
+              const angle = Math.atan2(dy, dx);
+              d.sx += (d.ax - Math.cos(angle) * push - d.sx) * 0.15;
+              d.sy += (d.ay - Math.sin(angle) * push - d.sy) * 0.15;
+            } else {
+              const angle = Math.atan2(dy, dx);
+              const move = (500 / dist) * (mouse.speed * options.cursorForce);
+              d.vx += Math.cos(angle) * -move;
+              d.vy += Math.sin(angle) * -move;
+            }
+          } else if (isBulge) {
+            d.sx += (d.ax - d.sx) * 0.1;
+            d.sy += (d.ay - d.sy) * 0.1;
+          }
+
+          if (!isBulge) {
+            d.vx *= 0.9;
+            d.vy *= 0.9;
+            d.x = d.ax + d.vx;
+            d.y = d.ay + d.vy;
+            d.sx += (d.x - d.sx) * 0.1;
+            d.sy += (d.y - d.sy) * 0.1;
+          }
+
+          let drawX = d.sx;
+          let drawY = d.sy;
+
+          ctx.moveTo(drawX + rad, drawY);
+          ctx.arc(drawX, drawY, rad, 0, TWO_PI);
+        }
+
+        ctx.fill();
+        rafId = requestAnimationFrame(tick);
+      }
+
+      doResize();
+      window.addEventListener('resize', doResize);
+      window.addEventListener('mousemove', onMouseMove, { passive: true });
+      rafId = requestAnimationFrame(tick);
+
+      window.cleanupDotField = () => {
+        cancelAnimationFrame(rafId);
+        clearInterval(speedInterval);
+        window.removeEventListener('resize', doResize);
+        window.removeEventListener('mousemove', onMouseMove);
+      };
+    };
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const isLight = document.body.classList.contains('light-theme');
+      updateThemeBtnIcon(isLight);
+      if (typeof initDotField === 'function') {
+        initDotField();
+      }
+    });
+  </script>
+</body>
+
+</html>
