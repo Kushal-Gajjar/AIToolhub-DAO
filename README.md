@@ -291,10 +291,11 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 <div align="center">
 
 Made by **[Dhruvi Gajjar](https://github.com/DhruviGajjar26)**
+, Contributed by **[Kushal-Gajjar](https://github.com/Kushal-Gajjar)**
 
-**Star this repo if you found it helpful!**
+ **Star this repo if you found it helpful!**
 
-</div>ocker Compose + Nginx
+</div>Docker Compose + Nginx
 
 ## Quick Start
 
