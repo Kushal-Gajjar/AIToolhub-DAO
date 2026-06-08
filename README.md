@@ -187,7 +187,7 @@ npm install
 
 ---
 
-## ▶️ Running the App
+## Running the App
 
 ### Start All Services (Docker)
 ```bash
@@ -223,7 +223,7 @@ npx hardhat run scripts/deploy.js --network mumbai
 
 ---
 
-## 🔌 API Endpoints
+## API Endpoints
 
 | Method | Endpoint | Description |
 |---|---|---|
