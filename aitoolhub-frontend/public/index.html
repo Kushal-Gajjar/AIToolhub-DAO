@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIToolHub DAO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">⬡</div>
+        <span class="logo-text">AIToolHub <em>DAO</em></span>
+      </div>
+
+      <div class="sidebar-token-card">
+        <div class="token-label">AIT Balance</div>
+        <div class="token-amount">2,450 <span>AIT</span></div>
+        <div class="token-bar"><div class="token-fill" style="width:62%"></div></div>
+        <div class="token-sub">Voting Power: 2,450</div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-group-label">Platform</div>
+        <a href="#" class="nav-item active" data-page="dashboard">
+          <span class="nav-icon">◈</span> Dashboard
+        </a>
+        <a href="#" class="nav-item" data-page="tools">
+          <span class="nav-icon">⬢</span> AI Tools
+        </a>
+        <a href="#" class="nav-item" data-page="governance">
+          <span class="nav-icon">◉</span> Governance
+        </a>
+        <a href="#" class="nav-item" data-page="treasury">
+          <span class="nav-icon">◈</span> Treasury
+        </a>
+        <div class="nav-group-label" style="margin-top:20px">Account</div>
+        <a href="#" class="nav-item" data-page="profile">
+          <span class="nav-icon">○</span> Profile
+        </a>
+      </nav>
+
+      <div class="sidebar-wallet">
+        <div class="wallet-dot"></div>
+        <div>
+          <div class="wallet-addr">0x4f3a...8d2c</div>
+          <div class="wallet-net">Polygon Mumbai</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-content">
+      <!-- Top bar -->
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <div class="topbar-title" id="pageTitle">Dashboard</div>
+        <div class="topbar-actions">
+          <div class="notif-btn">
+            <span>🔔</span>
+            <span class="notif-badge">3</span>
+          </div>
+          <div class="avatar">AK</div>
+        </div>
+      </header>
+
+      <!-- Pages -->
+      <div class="page active" id="page-dashboard">
+        <!-- Stats row -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#0d1f3c">◈</div>
+            <div class="stat-body">
+              <div class="stat-val">12</div>
+              <div class="stat-label">AI Tools Live</div>
+            </div>
+            <div class="stat-trend up">+2 this month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#1a0d2e">◉</div>
+            <div class="stat-body">
+              <div class="stat-val">5</div>
+              <div class="stat-label">Active Proposals</div>
+            </div>
+            <div class="stat-trend up">2 ending soon</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#0d2a1a">⬢</div>
+            <div class="stat-body">
+              <div class="stat-val">48.2K</div>
+              <div class="stat-label">AIT in Treasury</div>
+            </div>
+            <div class="stat-trend up">+1.2K this week</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#2a1a0d">○</div>
+            <div class="stat-body">
+              <div class="stat-val">342</div>
+              <div class="stat-label">DAO Members</div>
+            </div>
+            <div class="stat-trend up">+18 new</div>
+          </div>
+        </div>
+
+        <!-- Two col layout -->
+        <div class="two-col">
+          <!-- Recent tools -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Recent AI Tools</div>
+              <a href="#" class="card-link" data-page="tools">View All →</a>
+            </div>
+            <div class="tool-list">
+              <div class="tool-row">
+                <div class="tool-badge phase1">P1</div>
+                <div class="tool-info">
+                  <div class="tool-name">OCR Text Extractor</div>
+                  <div class="tool-meta">1.2K uses · Image → Text</div>
+                </div>
+                <div class="tool-status live">Live</div>
+              </div>
+              <div class="tool-row">
+                <div class="tool-badge phase1">P1</div>
+                <div class="tool-info">
+                  <div class="tool-name">Text Summarizer</div>
+                  <div class="tool-meta">890 uses · NLP</div>
+                </div>
+                <div class="tool-status live">Live</div>
+              </div>
+              <div class="tool-row">
+                <div class="tool-badge phase2">P2</div>
+                <div class="tool-info">
+                  <div class="tool-name">Resume Analyzer</div>
+                  <div class="tool-meta">430 uses · Career AI</div>
+                </div>
+                <div class="tool-status live">Live</div>
+              </div>
+              <div class="tool-row">
+                <div class="tool-badge phase3">P3</div>
+                <div class="tool-info">
+                  <div class="tool-name">Voice Emotion Detector</div>
+                  <div class="tool-meta">NEW · Audio Analysis</div>
+                </div>
+                <div class="tool-status new">New</div>
+              </div>
+              <div class="tool-row">
+                <div class="tool-badge phase3">P3</div>
+                <div class="tool-info">
+                  <div class="tool-name">Personality Prediction AI</div>
+                  <div class="tool-meta">NEW · Psychology AI</div>
+                </div>
+                <div class="tool-status new">New</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active proposals -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Active Proposals</div>
+              <a href="#" class="card-link" data-page="governance">Vote Now →</a>
+            </div>
+            <div class="proposal-list">
+              <div class="proposal-row" onclick="openProposal('1')">
+                <div class="proposal-header">
+                  <span class="proposal-id">#008</span>
+                  <span class="proposal-tag">Phase 3</span>
+                </div>
+                <div class="proposal-title">Add Sentiment Analysis Tool to Phase 2</div>
+                <div class="vote-bar-wrap">
+                  <div class="vote-bar"><div class="vote-fill" style="width:72%"></div></div>
+                  <span class="vote-pct">72% For</span>
+                </div>
+                <div class="proposal-meta">Ends in 2 days · 148 votes</div>
+              </div>
+              <div class="proposal-row" onclick="openProposal('2')">
+                <div class="proposal-header">
+                  <span class="proposal-id">#007</span>
+                  <span class="proposal-tag">Treasury</span>
+                </div>
+                <div class="proposal-title">Allocate 5,000 AIT for Developer Grants Q2</div>
+                <div class="vote-bar-wrap">
+                  <div class="vote-bar"><div class="vote-fill" style="width:58%"></div></div>
+                  <span class="vote-pct">58% For</span>
+                </div>
+                <div class="proposal-meta">Ends in 4 days · 203 votes</div>
+              </div>
+              <div class="proposal-row" onclick="openProposal('3')">
+                <div class="proposal-header">
+                  <span class="proposal-id">#006</span>
+                  <span class="proposal-tag">Governance</span>
+                </div>
+                <div class="proposal-title">Reduce Quorum from 10% to 7%</div>
+                <div class="vote-bar-wrap">
+                  <div class="vote-bar"><div class="vote-fill" style="width:41%"></div></div>
+                  <span class="vote-pct">41% For</span>
+                </div>
+                <div class="proposal-meta">Ends in 6 days · 89 votes</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity Feed -->
+        <div class="card" style="margin-top:24px">
+          <div class="card-header"><div class="card-title">Recent Activity</div></div>
+          <div class="activity-feed">
+            <div class="activity-item">
+              <div class="activity-dot" style="background:#00ff9d"></div>
+              <div class="activity-text"><strong>DAO</strong> deployed Voice Emotion Detector to production</div>
+              <div class="activity-time">2h ago</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot" style="background:#7c3aed"></div>
+              <div class="activity-text"><strong>0x9b2f...4a1c</strong> voted FOR proposal #008</div>
+              <div class="activity-time">4h ago</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot" style="background:#f59e0b"></div>
+              <div class="activity-text"><strong>Treasury</strong> received 500 AIT from premium tool fees</div>
+              <div class="activity-time">6h ago</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot" style="background:#3b82f6"></div>
+              <div class="activity-text"><strong>0x4f3a...8d2c</strong> submitted proposal #009</div>
+              <div class="activity-time">1d ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI TOOLS PAGE -->
+      <div class="page" id="page-tools">
+        <div class="page-intro">
+          <h1 class="page-heading">AI Tools</h1>
+          <p class="page-sub">Community-built AI tools. Vote on what gets built next.</p>
+        </div>
+        <div class="tools-filter">
+          <button class="filter-btn active" data-filter="all">All Tools</button>
+          <button class="filter-btn" data-filter="phase1">Phase 1</button>
+          <button class="filter-btn" data-filter="phase2">Phase 2</button>
+          <button class="filter-btn" data-filter="phase3">Phase 3</button>
+        </div>
+        <div class="tools-grid" id="toolsGrid">
+
+          <!-- OCR TOOL -->
+          <div class="tool-card" data-phase="phase1">
+            <div class="tool-card-header">
+              <div class="tc-icon">📷</div>
+              <div class="tc-badge phase1">Phase 1</div>
+            </div>
+            <div class="tc-name">OCR Text Extractor</div>
+            <div class="tc-desc">Extract text from images and PDFs using Tesseract OCR engine. Supports 40+ languages.</div>
+            <div class="tc-stats"><span>1,204 uses</span><span>Avg 1.2s</span></div>
+            <button class="tc-btn" onclick="openTool('ocr')">Launch Tool →</button>
+          </div>
+
+          <!-- SUMMARIZER -->
+          <div class="tool-card" data-phase="phase1">
+            <div class="tool-card-header">
+              <div class="tc-icon">📝</div>
+              <div class="tc-badge phase1">Phase 1</div>
+            </div>
+            <div class="tc-name">Text Summarizer</div>
+            <div class="tc-desc">Paste any long text and receive a concise, accurate summary powered by transformer models.</div>
+            <div class="tc-stats"><span>892 uses</span><span>Avg 0.8s</span></div>
+            <button class="tc-btn" onclick="openTool('summarizer')">Launch Tool →</button>
+          </div>
+
+          <!-- GRAMMAR -->
+          <div class="tool-card" data-phase="phase1">
+            <div class="tool-card-header">
+              <div class="tc-icon">✍️</div>
+              <div class="tc-badge phase1">Phase 1</div>
+            </div>
+            <div class="tc-name">Grammar Checker</div>
+            <div class="tc-desc">Real-time grammar, spelling, and style analysis. Improve your writing instantly.</div>
+            <div class="tc-stats"><span>2,100 uses</span><span>Avg 0.4s</span></div>
+            <button class="tc-btn" onclick="openTool('grammar')">Launch Tool →</button>
+          </div>
+
+          <!-- RESUME -->
+          <div class="tool-card" data-phase="phase2">
+            <div class="tool-card-header">
+              <div class="tc-icon">📄</div>
+              <div class="tc-badge phase2">Phase 2</div>
+            </div>
+            <div class="tc-name">Resume Analyzer</div>
+            <div class="tc-desc">Score your resume against a job description. Get ATS optimization tips and match percentage.</div>
+            <div class="tc-stats"><span>430 uses</span><span>Avg 2.1s</span></div>
+            <button class="tc-btn" onclick="openTool('resume')">Launch Tool →</button>
+          </div>
+
+          <!-- CHATBOT -->
+          <div class="tool-card" data-phase="phase2">
+            <div class="tool-card-header">
+              <div class="tc-icon">🤖</div>
+              <div class="tc-badge phase2">Phase 2</div>
+            </div>
+            <div class="tc-name">Chatbot Builder</div>
+            <div class="tc-desc">Build a custom AI chatbot for your website without code. Define personality, knowledge base, and responses.</div>
+            <div class="tc-stats"><span>187 uses</span><span>Avg 3s</span></div>
+            <button class="tc-btn" onclick="openTool('chatbot')">Launch Tool →</button>
+          </div>
+
+          <!-- IMAGE CLASSIFIER -->
+          <div class="tool-card" data-phase="phase2">
+            <div class="tool-card-header">
+              <div class="tc-icon">🖼️</div>
+              <div class="tc-badge phase2">Phase 2</div>
+            </div>
+            <div class="tc-name">Image Classifier</div>
+            <div class="tc-desc">Upload any image and receive classification labels with confidence scores using MobileNet.</div>
+            <div class="tc-stats"><span>310 uses</span><span>Avg 1.5s</span></div>
+            <button class="tc-btn" onclick="openTool('imgclassify')">Launch Tool →</button>
+          </div>
+
+          <!-- VOICE EMOTION -->
+          <div class="tool-card highlight-card" data-phase="phase3">
+            <div class="new-ribbon">NEW</div>
+            <div class="tool-card-header">
+              <div class="tc-icon">🎙️</div>
+              <div class="tc-badge phase3">Phase 3</div>
+            </div>
+            <div class="tc-name">Voice Emotion Detector</div>
+            <div class="tc-desc">Record or upload audio. AI analyzes vocal patterns to detect emotions like happiness, sadness, anger, and more.</div>
+            <div class="tc-stats"><span>NEW · 0 uses</span><span>Beta</span></div>
+            <button class="tc-btn tc-btn-accent" onclick="openTool('voice')">Launch Tool →</button>
+          </div>
+
+          <!-- PERSONALITY AI -->
+          <div class="tool-card highlight-card" data-phase="phase3">
+            <div class="new-ribbon">NEW</div>
+            <div class="tool-card-header">
+              <div class="tc-icon">🧠</div>
+              <div class="tc-badge phase3">Phase 3</div>
+            </div>
+            <div class="tc-name">Personality Prediction AI</div>
+            <div class="tc-desc">Answer a series of questions or paste a text sample. AI predicts your Big Five personality traits (OCEAN model).</div>
+            <div class="tc-stats"><span>NEW · 0 uses</span><span>Beta</span></div>
+            <button class="tc-btn tc-btn-accent" onclick="openTool('personality')">Launch Tool →</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- GOVERNANCE PAGE -->
+      <div class="page" id="page-governance">
+        <div class="page-intro">
+          <h1 class="page-heading">Governance</h1>
+          <p class="page-sub">Vote on proposals. Shape the future of AIToolHub DAO.</p>
+          <button class="primary-btn" onclick="openNewProposal()">+ New Proposal</button>
+        </div>
+
+        <div class="proposals-full">
+          <div class="proposal-card" onclick="openProposal('1')">
+            <div class="pc-top">
+              <span class="pc-id">#008</span>
+              <span class="pc-tag phase2-tag">Phase 3</span>
+              <span class="pc-status active-status">Active</span>
+            </div>
+            <div class="pc-title">Add Sentiment Analysis Tool to Phase 2</div>
+            <div class="pc-desc">Proposal to add a real-time sentiment analysis microservice that returns polarity scores for any text input. Budget: 1,200 AIT.</div>
+            <div class="pc-votes">
+              <div class="pv-for">
+                <div class="pv-label">For</div>
+                <div class="pv-bar"><div class="pv-fill for-fill" style="width:72%"></div></div>
+                <div class="pv-num">72%</div>
+              </div>
+              <div class="pv-against">
+                <div class="pv-label">Against</div>
+                <div class="pv-bar"><div class="pv-fill against-fill" style="width:28%"></div></div>
+                <div class="pv-num">28%</div>
+              </div>
+            </div>
+            <div class="pc-footer">
+              <span>148 votes cast</span>
+              <span>Ends in 2 days</span>
+              <div class="pc-btns">
+                <button class="vote-for-btn" onclick="event.stopPropagation(); castVote('for','#008')">Vote For</button>
+                <button class="vote-against-btn" onclick="event.stopPropagation(); castVote('against','#008')">Vote Against</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="proposal-card" onclick="openProposal('2')">
+            <div class="pc-top">
+              <span class="pc-id">#007</span>
+              <span class="pc-tag treasury-tag">Treasury</span>
+              <span class="pc-status active-status">Active</span>
+            </div>
+            <div class="pc-title">Allocate 5,000 AIT for Developer Grants Q2</div>
+            <div class="pc-desc">Allocate 5,000 AIT from the treasury to fund Q2 developer grants. Grants support builders creating new AI tool microservices.</div>
+            <div class="pc-votes">
+              <div class="pv-for">
+                <div class="pv-label">For</div>
+                <div class="pv-bar"><div class="pv-fill for-fill" style="width:58%"></div></div>
+                <div class="pv-num">58%</div>
+              </div>
+              <div class="pv-against">
+                <div class="pv-label">Against</div>
+                <div class="pv-bar"><div class="pv-fill against-fill" style="width:42%"></div></div>
+                <div class="pv-num">42%</div>
+              </div>
+            </div>
+            <div class="pc-footer">
+              <span>203 votes cast</span>
+              <span>Ends in 4 days</span>
+              <div class="pc-btns">
+                <button class="vote-for-btn" onclick="event.stopPropagation(); castVote('for','#007')">Vote For</button>
+                <button class="vote-against-btn" onclick="event.stopPropagation(); castVote('against','#007')">Vote Against</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="proposal-card passed-card">
+            <div class="pc-top">
+              <span class="pc-id">#005</span>
+              <span class="pc-tag phase3-tag">Phase 3</span>
+              <span class="pc-status passed-status">Passed ✓</span>
+            </div>
+            <div class="pc-title">Build Voice Emotion Detector — Phase 3</div>
+            <div class="pc-desc">Proposal to build a voice emotion detection AI tool using audio feature extraction and ML classification. Budget: 2,500 AIT.</div>
+            <div class="pc-votes">
+              <div class="pv-for">
+                <div class="pv-label">For</div>
+                <div class="pv-bar"><div class="pv-fill for-fill" style="width:84%"></div></div>
+                <div class="pv-num">84%</div>
+              </div>
+              <div class="pv-against">
+                <div class="pv-label">Against</div>
+                <div class="pv-bar"><div class="pv-fill against-fill" style="width:16%"></div></div>
+                <div class="pv-num">16%</div>
+              </div>
+            </div>
+            <div class="pc-footer">
+              <span>312 votes cast</span>
+              <span>Executed ✓</span>
+            </div>
+          </div>
+
+          <div class="proposal-card passed-card">
+            <div class="pc-top">
+              <span class="pc-id">#004</span>
+              <span class="pc-tag phase3-tag">Phase 3</span>
+              <span class="pc-status passed-status">Passed ✓</span>
+            </div>
+            <div class="pc-title">Build Personality Prediction AI — OCEAN Model</div>
+            <div class="pc-desc">Build a personality prediction AI using the Big Five OCEAN model. Accept text or questionnaire inputs and return trait scores.</div>
+            <div class="pc-votes">
+              <div class="pv-for">
+                <div class="pv-label">For</div>
+                <div class="pv-bar"><div class="pv-fill for-fill" style="width:91%"></div></div>
+                <div class="pv-num">91%</div>
+              </div>
+              <div class="pv-against">
+                <div class="pv-label">Against</div>
+                <div class="pv-bar"><div class="pv-fill against-fill" style="width:9%"></div></div>
+                <div class="pv-num">9%</div>
+              </div>
+            </div>
+            <div class="pc-footer">
+              <span>278 votes cast</span>
+              <span>Executed ✓</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TREASURY PAGE -->
+      <div class="page" id="page-treasury">
+        <div class="page-intro">
+          <h1 class="page-heading">Treasury</h1>
+          <p class="page-sub">DAO funds, token flow, and financial transparency.</p>
+        </div>
+        <div class="treasury-stats">
+          <div class="tstat-card">
+            <div class="tstat-label">Total Treasury</div>
+            <div class="tstat-val">48,240 <span>AIT</span></div>
+          </div>
+          <div class="tstat-card">
+            <div class="tstat-label">This Month Inflow</div>
+            <div class="tstat-val green-val">+3,200 <span>AIT</span></div>
+          </div>
+          <div class="tstat-card">
+            <div class="tstat-label">Pending Payouts</div>
+            <div class="tstat-val orange-val">7,500 <span>AIT</span></div>
+          </div>
+          <div class="tstat-card">
+            <div class="tstat-label">Total Distributed</div>
+            <div class="tstat-val">18,600 <span>AIT</span></div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:24px">
+          <div class="card-header"><div class="card-title">Transaction History</div></div>
+          <table class="tx-table">
+            <thead>
+              <tr><th>Date</th><th>Type</th><th>Description</th><th>Amount</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Apr 20, 2026</td><td><span class="tx-type inflow">Inflow</span></td>
+                <td>Premium tool fees — OCR, Summarizer</td><td class="green-val">+500 AIT</td>
+                <td><span class="tx-status confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>Apr 18, 2026</td><td><span class="tx-type payout">Payout</span></td>
+                <td>Proposal #005 — Voice Emotion Dev</td><td class="red-val">-2,500 AIT</td>
+                <td><span class="tx-status confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>Apr 15, 2026</td><td><span class="tx-type payout">Payout</span></td>
+                <td>Proposal #004 — Personality AI Dev</td><td class="red-val">-2,200 AIT</td>
+                <td><span class="tx-status confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>Apr 12, 2026</td><td><span class="tx-type inflow">Inflow</span></td>
+                <td>Community donations — Q1</td><td class="green-val">+1,200 AIT</td>
+                <td><span class="tx-status confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>Apr 10, 2026</td><td><span class="tx-type reward">Reward</span></td>
+                <td>Contributor rewards — 5 builders</td><td class="red-val">-800 AIT</td>
+                <td><span class="tx-status confirmed">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>Apr 08, 2026</td><td><span class="tx-type inflow">Inflow</span></td>
+                <td>Premium tool fees — Resume Analyzer</td><td class="green-val">+320 AIT</td>
+                <td><span class="tx-status confirmed">Confirmed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PROFILE PAGE -->
+      <div class="page" id="page-profile">
+        <div class="page-intro">
+          <h1 class="page-heading">My Profile</h1>
+        </div>
+        <div class="profile-layout">
+          <div class="profile-card">
+            <div class="profile-avatar">AK</div>
+            <div class="profile-name">Aryan Kumar</div>
+            <div class="profile-wallet">0x4f3a...8d2c</div>
+            <div class="profile-role-badge">Builder + Voter</div>
+            <div class="profile-stats-row">
+              <div class="ps-item"><div class="ps-val">2,450</div><div class="ps-label">AIT Balance</div></div>
+              <div class="ps-item"><div class="ps-val">14</div><div class="ps-label">Votes Cast</div></div>
+              <div class="ps-item"><div class="ps-val">3</div><div class="ps-label">Proposals</div></div>
+            </div>
+          </div>
+          <div class="card" style="flex:1">
+            <div class="card-header"><div class="card-title">My Contributions</div></div>
+            <div class="contrib-list">
+              <div class="contrib-item">
+                <span class="contrib-icon">🔨</span>
+                <div><div class="contrib-title">Built OCR Text Extractor</div><div class="contrib-date">Feb 2026 · Earned 800 AIT</div></div>
+              </div>
+              <div class="contrib-item">
+                <span class="contrib-icon">🗳️</span>
+                <div><div class="contrib-title">Voted on 14 Proposals</div><div class="contrib-date">Participation Rate: 87%</div></div>
+              </div>
+              <div class="contrib-item">
+                <span class="contrib-icon">📋</span>
+                <div><div class="contrib-title">Submitted Proposal #009</div><div class="contrib-date">Apr 2026 · Pending</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- TOOL MODAL -->
+  <div class="modal-overlay" id="toolModal">
+    <div class="modal-box" id="toolModalBox">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="toolModalContent"></div>
+    </div>
+  </div>
+
+  <!-- VOTE TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

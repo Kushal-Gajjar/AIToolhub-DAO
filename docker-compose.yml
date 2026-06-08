@@ -1,0 +1,99 @@
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: dhruvi
+      POSTGRES_DB: aitoolhub
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis (for Celery)
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ASP.NET Core API
+  api:
+    build:
+      context: ./aitoolhub-api
+      dockerfile: Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      # Force .NET 8 to listen on port 5000 inside the container
+      ASPNETCORE_HTTP_PORTS: "5000" 
+      ConnectionStrings__DefaultConnection: "Host=db;Port=5432;Database=aitoolhub;Username=postgres;Password=postgres"
+      Jwt__Secret: "ThisIsATemporarySecretKeyForTesting123!"
+    ports:
+      - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # Python AI Microservices
+  ai:
+    build:
+      context: ./aitoolhub-ai
+      dockerfile: Dockerfile
+    environment:
+      REDIS_URL: redis://redis:6379/0
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  # Celery Worker
+  celery:
+    build:
+      context: ./aitoolhub-ai
+      dockerfile: Dockerfile
+    command: celery -A celery_worker worker --loglevel=info --concurrency=4
+    environment:
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./aitoolhub-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80" # Maps Windows 3000 to Nginx 80 inside the container
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - api
+      - ai
+      - frontend
+    restart: unless-stopped
+
+volumes:
+  pg_data:

@@ -2,3 +2,5 @@ venv/
 *.zip 
 *.lib 
 *.dll 
+"node_modules/" 
+".env" 
