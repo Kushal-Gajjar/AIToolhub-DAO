@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("aitoolhub-api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4a1f4a6ec267b4ec4a058104d41a43b18e7ca5cb")]
 [assembly: System.Reflection.AssemblyProductAttribute("aitoolhub-api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("aitoolhub-api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

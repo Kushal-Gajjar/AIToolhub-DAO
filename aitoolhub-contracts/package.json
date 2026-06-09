@@ -10,12 +10,11 @@
     "deploy:local": "hardhat run scripts/deploy.js --network hardhat"
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^7.0.0",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "dotenv": "^16.4.5",
-    "hardhat": "^3.4.1"
+    "hardhat": "^2.22.5"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^5.0.2"
-  },
-  "type": "module"
+    "@openzeppelin/contracts": "5.0.0"
+  }
 }
