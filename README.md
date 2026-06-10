@@ -340,3 +340,4 @@ Copy `.env.example` to `.env` and fill in:
 - `Jwt__Secret` — min 32-char secret for JWT signing
 - `PRIVATE_KEY` — deployer wallet private key for contracts
 - `POLYGONSCAN_API_KEY` — for contract verification
+"." 
